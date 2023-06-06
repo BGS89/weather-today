@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState({});
-  const weatherArr = currentWeather;
 
   useEffect(() => {
     fetchCurrentWeather("Brighton")
@@ -16,7 +15,7 @@ function App() {
       });
   }, []);
 
-  console.log(currentWeather);
+  console.log(currentWeather.condition.text);
   return (
     <div>
       <h1>Weather Punx</h1>
@@ -24,6 +23,7 @@ function App() {
       <ul>
         <li>Temp C - {currentWeather.temp_c}</li>
         <li>Temp F - {currentWeather.temp_f}</li>
+        <li>Description - {currentWeather.condition.text}</li>
       </ul>
     </div>
   );
