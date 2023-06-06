@@ -31,7 +31,7 @@ function App() {
         <input
           type="text"
           id="search"
-          value={search}
+          // value={search}
           onChange={(event) => {
             setSearch(event.target.value);
           }}
