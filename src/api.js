@@ -14,4 +14,12 @@ const fetchCurrentWeather = (city) => {
     });
 };
 
-export { fetchCurrentWeather };
+const fetchForecast = (city) => {
+  return weatherApi
+    .get(`/current.json?key=${key}&q=${city}&days=7&aqi=n0&alerts=no`)
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export { fetchCurrentWeather, fetchForecast };
