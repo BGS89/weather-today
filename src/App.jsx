@@ -1,11 +1,13 @@
 import "./App.css";
-import { fetchCurrentWeather } from "./api";
+import { fetchCurrentWeather, fetchForecast } from "./api";
 import { useEffect, useState } from "react";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState({});
   const [city, setCity] = useState("");
   const [search, setSearch] = useState("");
+
+  console.log(fetchForecast(city));
 
   useEffect(() => {
     fetchCurrentWeather(city)
