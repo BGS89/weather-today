@@ -38,7 +38,8 @@ function App() {
         />
         <button>Search</button>
       </form>
-
+      <h2>Location: {city}</h2>
+      <h3>Current Weather</h3>
       <ul>
         <li>Temp C - {currentWeather.temp_c}</li>
         <li>Temp F - {currentWeather.temp_f}</li>
