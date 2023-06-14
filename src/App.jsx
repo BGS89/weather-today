@@ -1,13 +1,15 @@
 import "./App.css";
-import { fetchCurrentWeather, fetchForecast } from "./api";
+import { fetchCurrentWeather } from "./api";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [currentWeather, setCurrentWeather] = useState({});
-  const [city, setCity] = useState("");
+  const [currentWeather, setCurrentWeather] = useState({
+    temp_c: "",
+    temp_f: "",
+    condition: { text: "", icon: "" },
+  });
+  const [city, setCity] = useState(" ");
   const [search, setSearch] = useState("");
-
-  console.log(fetchForecast(city));
 
   useEffect(() => {
     fetchCurrentWeather(city)
@@ -24,29 +26,34 @@ function App() {
     setCity(search);
   }
 
+  console.log(currentWeather);
+
+  const icon = currentWeather["condition"]["icon"];
+
   return (
-    <div>
+    <main>
       <h1>Weather Punx</h1>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="search">Search by City</label>
         <input
           type="text"
           id="search"
-          // value={search}
+          placeholder="search by city..."
           onChange={(event) => {
             setSearch(event.target.value);
           }}
         />
         <button>Search</button>
       </form>
-      <h2>Location: {city}</h2>
+      <h2>{city}</h2>
       <h3>Current Weather</h3>
+      <img src={icon} alt="" />
+      <p>{currentWeather["condition"]["text"]}</p>
       <ul>
-        <li>Temp C - {currentWeather.temp_c}</li>
-        <li>Temp F - {currentWeather.temp_f}</li>
+        <li>{currentWeather.temp_c} C</li>
+        <li>{currentWeather.temp_f} F</li>
       </ul>
-    </div>
+    </main>
   );
 }
 

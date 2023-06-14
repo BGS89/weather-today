@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+main {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+h1 {
+  border: 1px solid black;
+  text-align: center;
+}
+
+form {
+  border: 1px solid black;
+}
+
+h2 {
+  border: 1px solid black;
+  text-align: center;
+}
