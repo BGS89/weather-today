@@ -1,6 +1,7 @@
 import "./App.css";
-import { fetchCurrentWeather } from "./api";
+import { fetchCurrentWeather, fetchForecast } from "./api";
 import { useEffect, useState } from "react";
+import HourCard from "./components/HourCard";
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState({
@@ -8,8 +9,12 @@ function App() {
     temp_f: "",
     condition: { text: "", icon: "" },
   });
-  const [city, setCity] = useState(" ");
+  const [city, setCity] = useState("");
   const [search, setSearch] = useState("");
+  const [hourlyForecast, setHourlyForecast] = useState([]);
+
+  const icon = currentWeather["condition"]["icon"];
+  const description = currentWeather["condition"]["text"];
 
   useEffect(() => {
     fetchCurrentWeather(city)
@@ -21,14 +26,22 @@ function App() {
       });
   }, [city]);
 
+  useEffect(() => {
+    fetchForecast(city)
+      .then((forecastFromApi) => {
+        setHourlyForecast(forecastFromApi);
+      })
+      .catch((error) => {
+        return error;
+      });
+  }, [city]);
+
   function handleSubmit(e) {
     e.preventDefault();
     setCity(search);
   }
 
-  console.log(currentWeather);
-
-  const icon = currentWeather["condition"]["icon"];
+  console.log(hourlyForecast[0]["time"]);
 
   return (
     <main>
@@ -46,12 +59,18 @@ function App() {
         <button>Search</button>
       </form>
       <h2>{city}</h2>
-      <h3>Current Weather</h3>
-      <img src={icon} alt="" />
-      <p>{currentWeather["condition"]["text"]}</p>
-      <ul>
+      <div id="description">
+        <img src={icon} alt="" />
+        <p>{description}</p>
+      </div>
+      <ul id="current-weather">
         <li>{currentWeather.temp_c} C</li>
         <li>{currentWeather.temp_f} F</li>
+      </ul>
+      <ul id="hourly-weather">
+        {hourlyForecast.map((hour) => (
+          <HourCard key={hour.time_epoch} hour={hour} />
+        ))}
       </ul>
     </main>
   );
