@@ -12,7 +12,7 @@ function HourCard({ hour }) {
       {/* <p>{hour.condition.text}</p> */}
       <div className="card-temp">
         <p>{hour.temp_c} C</p>
-        <p>{hour.temp_f} F</p>
+        {/* <p>{hour.temp_f} F</p> */}
       </div>
     </li>
   );
