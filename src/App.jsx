@@ -76,7 +76,7 @@ function App() {
         <li>{currentWeather.temp_c} C</li>
         <li>{currentWeather.temp_f} F</li>
       </ul>
-      <Pagination>
+      <Pagination className="pagination">
         <Pagination.Prev
           onClick={() => handlePagination(currentPage - 1)}
           disabled={currentPage === 1}
