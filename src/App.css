@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Nunito", sans-serif;
+  background-color: #48cae4;
+}
+
+main {
+  /* border: 5px solid white; */
+  padding: 5px;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+#description {
+  text-align: center;
+}
+
+#current-weather {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+
+#hourly-weather {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+  padding: 0px;
+}
+
+.hour-card {
+  /* border: 1px solid black; */
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.card-temp {
+  display: flex;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
