@@ -18,14 +18,20 @@ function App() {
 
   const icon = currentWeather.condition.icon;
   const description = currentWeather.condition.text;
+  // ...
 
   useEffect(() => {
     fetchCurrentWeather(city)
       .then((weatherFromApi) => {
         setCurrentWeather(weatherFromApi);
       })
-      .catch((error) => {
-        return error;
+      .catch(() => {
+        setCurrentWeather({
+          temp_c: "",
+          temp_f: "",
+          condition: { text: "", icon: "" },
+        });
+        setHourlyForecast([]);
       });
   }, [city]);
 
@@ -34,10 +40,17 @@ function App() {
       .then((forecastFromApi) => {
         setHourlyForecast(forecastFromApi);
       })
-      .catch((error) => {
-        return error;
+      .catch(() => {
+        setCurrentWeather({
+          temp_c: "",
+          temp_f: "",
+          condition: { text: "", icon: "" },
+        });
+        setHourlyForecast([]);
       });
   }, [city]);
+
+  // ...
 
   function handleSubmit(e) {
     e.preventDefault();
