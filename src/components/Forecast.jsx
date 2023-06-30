@@ -72,8 +72,6 @@ function Forecast() {
 
   return (
     <main>
-      <h1>Weather Punx</h1>
-
       <form onSubmit={handleSubmit}>
         <input
           type="text"
