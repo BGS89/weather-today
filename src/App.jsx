@@ -49,6 +49,12 @@ function App() {
   const currentCards = hourlyForecast.slice(indexOfFirstCard, indexOfLastCard);
 
   const handlePagination = (pageNumber) => {
+    if (
+      pageNumber < 1 ||
+      pageNumber > Math.ceil(hourlyForecast.length / cardsPerPage)
+    ) {
+      return;
+    }
     setCurrentPage(pageNumber);
   };
 

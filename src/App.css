@@ -2,13 +2,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
+  height: 100vh;
   font-family: "Nunito", sans-serif;
   background-color: #48cae4;
 }
 
 main {
-  border: 5px solid white;
+  /* border: 5px solid white; */
   padding: 5px;
   color: white;
 }
@@ -40,7 +40,7 @@ h2 {
 }
 
 .hour-card {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 5px;
   display: grid;
   grid-template-columns: 1fr;
