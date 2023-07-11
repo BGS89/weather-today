@@ -79,7 +79,7 @@ function Forecast() {
           />
           <button>Search</button>
         </form>
-        {/* <h2>{city}</h2> */}
+        <h2>{city}</h2>
         <i class="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
       </main>
     );
