@@ -1,7 +1,7 @@
 function Heading() {
   return (
     <header>
-      <h1>Weather Punx</h1>
+      <h1>Weather Today</h1>
     </header>
   );
 }

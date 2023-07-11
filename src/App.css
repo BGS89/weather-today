@@ -3,14 +3,18 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: "Nunito", sans-serif;
+  font-family: "Belanosima", sans-serif;
   background-color: #48cae4;
 }
 
 main {
-  /* border: 5px solid white; */
   padding: 5px;
   color: white;
+  text-align: center;
+}
+
+.fa-sharp {
+  margin-top: 25px;
 }
 
 h1 {
@@ -19,6 +23,29 @@ h1 {
 
 h2 {
   text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  border: none;
+  outline: none;
+  background-color: #48cae4;
+  border-bottom: 1px solid white;
+  font-size: 1.5rem;
+}
+
+#hourly {
+  border: 1px solid white;
+  padding: 5px;
 }
 
 #description {
