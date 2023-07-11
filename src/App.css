@@ -10,6 +10,11 @@ body {
 main {
   padding: 5px;
   color: white;
+  text-align: center;
+}
+
+.fa-sharp {
+  margin-top: 25px;
 }
 
 h1 {

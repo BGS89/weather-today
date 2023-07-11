@@ -19,8 +19,6 @@ function Forecast() {
   const icon = currentWeather.condition.icon;
   const description = currentWeather.condition.text;
 
-  console.log(currentWeather);
-
   useEffect(() => {
     fetchCurrentWeather(city)
       .then((weatherFromApi) => {
@@ -81,7 +79,8 @@ function Forecast() {
           />
           <button>Search</button>
         </form>
-        <h2>{city}</h2>
+        {/* <h2>{city}</h2> */}
+        <i class="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
       </main>
     );
   }
