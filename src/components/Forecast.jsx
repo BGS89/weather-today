@@ -17,7 +17,6 @@ function Forecast() {
 
   const icon = currentWeather.condition.icon;
   const description = currentWeather.condition.text;
-  // ...
 
   useEffect(() => {
     fetchCurrentWeather(city)
@@ -48,8 +47,6 @@ function Forecast() {
         setHourlyForecast([]);
       });
   }, [city]);
-
-  // ...
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -92,6 +89,7 @@ function Forecast() {
         <li>{currentWeather.temp_c} C</li>
         <li>{currentWeather.temp_f} F</li>
       </ul>
+      <h3>Hourly Forecast</h3>
       <Pagination className="pagination">
         <Pagination.Prev
           onClick={() => handlePagination(currentPage - 1)}

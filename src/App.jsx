@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Heading />
-      <Forecast />;
+      <Forecast />
     </div>
   );
 }
