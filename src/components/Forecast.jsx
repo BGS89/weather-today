@@ -67,6 +67,24 @@ function Forecast() {
     setCurrentPage(pageNumber);
   };
 
+  if (city === "") {
+    return (
+      <main>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            id="search"
+            placeholder="search by city..."
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+          <button>Search</button>
+        </form>
+      </main>
+    );
+  }
+
   return (
     <main>
       <form onSubmit={handleSubmit}>
