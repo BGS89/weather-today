@@ -87,6 +87,11 @@ function Forecast() {
     visible: { opacity: 1, transition: { duration: 2.5 } },
   };
 
+  const slideVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+  };
+
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = hourlyForecast.slice(indexOfFirstCard, indexOfLastCard);
@@ -132,7 +137,15 @@ function Forecast() {
           </Pagination>
           <ul id="hourly-weather">
             {currentCards.map((hour) => (
-              <HourCard key={hour.time_epoch} hour={hour} />
+              <motion.li
+                key={hour.time_epoch}
+                variants={slideVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+              >
+                <HourCard hour={hour} />
+              </motion.li>
             ))}
           </ul>
         </div>
