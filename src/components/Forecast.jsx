@@ -19,6 +19,8 @@ function Forecast() {
   const icon = currentWeather.condition.icon;
   const description = currentWeather.condition.text;
 
+  console.log(currentWeather);
+
   useEffect(() => {
     fetchCurrentWeather(city)
       .then((weatherFromApi) => {
@@ -31,6 +33,7 @@ function Forecast() {
           condition: { text: "", icon: "" },
         });
         setHourlyForecast([]);
+        setCity("Location Not Found...");
       });
   }, [city]);
 
@@ -64,7 +67,7 @@ function Forecast() {
     setCurrentPage(pageNumber);
   };
 
-  if (city === "") {
+  if (city === "" || city === "Location Not Found...") {
     return (
       <main>
         <form onSubmit={handleSearch}>
@@ -78,6 +81,7 @@ function Forecast() {
           />
           <button>Search</button>
         </form>
+        <h2>{city}</h2>
       </main>
     );
   }
