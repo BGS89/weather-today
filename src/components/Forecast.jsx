@@ -24,29 +24,16 @@ function Forecast() {
       .then((weatherFromApi) => {
         setCurrentWeather(weatherFromApi);
       })
-      .catch(() => {
-        setCurrentWeather({
-          temp_c: "",
-          temp_f: "",
-          condition: { text: "", icon: "" },
-        });
-        setHourlyForecast([]);
+      .catch((error) => {
+        console.log(error);
         setCity("Location Not Found...");
       });
-  }, [city]);
-
-  useEffect(() => {
     fetchForecast(city)
       .then((forecastFromApi) => {
         setHourlyForecast(forecastFromApi);
       })
-      .catch(() => {
-        setCurrentWeather({
-          temp_c: "",
-          temp_f: "",
-          condition: { text: "", icon: "" },
-        });
-        setHourlyForecast([]);
+      .catch((error) => {
+        console.log(error);
       });
   }, [city]);
 
