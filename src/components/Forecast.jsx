@@ -16,9 +16,6 @@ function Forecast() {
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(3);
 
-  const icon = currentWeather.condition.icon;
-  const description = currentWeather.condition.text;
-
   useEffect(() => {
     fetchCurrentWeather(city)
       .then((weatherFromApi) => {
@@ -40,6 +37,7 @@ function Forecast() {
   const handleSearch = (e) => {
     e.preventDefault();
     setCity(search);
+    frm.reset();
   };
 
   const handlePagination = (pageNumber) => {
@@ -66,8 +64,8 @@ function Forecast() {
           />
           <button>Search</button>
         </form>
-        <h2>{city}</h2>
-        <i class="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
+        {/* <h2>{city}</h2> */}
+        <i className="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
       </main>
     );
   }
@@ -88,26 +86,27 @@ function Forecast() {
 
   return (
     <main>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          id="search"
-          placeholder="search by city..."
-          onChange={(event) => {
-            setSearch(event.target.value);
-          }}
-        />
-        <button>Search</button>
-      </form>
       <motion.div
         initial="hidden"
         animate="visible"
         variants={forecastVariants}
       >
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            id="search"
+            placeholder="search by city..."
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+          <button>Search</button>
+        </form>
+
         <h2>{city}</h2>
         <div id="description">
-          <img src={icon} alt="" />
-          <p>{description}</p>
+          <img src={currentWeather.condition.icon} alt="" />
+          <p>{currentWeather.condition.text}</p>
         </div>
         <ul id="current-weather">
           <li>{currentWeather.temp_c} C</li>
