@@ -16,43 +16,28 @@ function Forecast() {
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(3);
 
-  const icon = currentWeather.condition.icon;
-  const description = currentWeather.condition.text;
-
   useEffect(() => {
     fetchCurrentWeather(city)
       .then((weatherFromApi) => {
         setCurrentWeather(weatherFromApi);
       })
-      .catch(() => {
-        setCurrentWeather({
-          temp_c: "",
-          temp_f: "",
-          condition: { text: "", icon: "" },
-        });
-        setHourlyForecast([]);
+      .catch((error) => {
+        console.log(error);
         setCity("Location Not Found...");
       });
-  }, [city]);
-
-  useEffect(() => {
     fetchForecast(city)
       .then((forecastFromApi) => {
         setHourlyForecast(forecastFromApi);
       })
-      .catch(() => {
-        setCurrentWeather({
-          temp_c: "",
-          temp_f: "",
-          condition: { text: "", icon: "" },
-        });
-        setHourlyForecast([]);
+      .catch((error) => {
+        console.log(error);
       });
   }, [city]);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setCity(search);
+    frm.reset();
   };
 
   const handlePagination = (pageNumber) => {
@@ -68,19 +53,25 @@ function Forecast() {
   if (city === "" || city === "Location Not Found...") {
     return (
       <main>
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            id="search"
-            placeholder="search by city..."
-            onChange={(event) => {
-              setSearch(event.target.value);
-            }}
-          />
-          <button>Search</button>
-        </form>
-        <h2>{city}</h2>
-        <i class="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 0.5, duration: 1 } }}
+          exit={{ opacity: 0, transition: { duration: 0.5 } }}
+        >
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              id="search"
+              placeholder="search by city..."
+              onChange={(event) => {
+                setSearch(event.target.value);
+              }}
+            />
+            <button>Search</button>
+          </form>
+          {/* <h2>{city}</h2> */}
+          <i className="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
+        </motion.div>
       </main>
     );
   }
@@ -88,6 +79,7 @@ function Forecast() {
   const forecastVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 2.5 } },
+    exit: { opacity: 0, transition: { duration: 2.5 } },
   };
 
   const slideVariants = {
@@ -101,26 +93,28 @@ function Forecast() {
 
   return (
     <main>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          id="search"
-          placeholder="search by city..."
-          onChange={(event) => {
-            setSearch(event.target.value);
-          }}
-        />
-        <button>Search</button>
-      </form>
-      <motion.div
+      <motion.main
         initial="hidden"
         animate="visible"
+        exit="exit"
         variants={forecastVariants}
       >
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            id="search"
+            placeholder="search by city..."
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+          <button>Search</button>
+        </form>
+
         <h2>{city}</h2>
         <div id="description">
-          <img src={icon} alt="" />
-          <p>{description}</p>
+          <img src={currentWeather.condition.icon} alt="" />
+          <p>{currentWeather.condition.text}</p>
         </div>
         <ul id="current-weather">
           <li>{currentWeather.temp_c} C</li>
@@ -152,7 +146,7 @@ function Forecast() {
             ))}
           </ul>
         </div>
-      </motion.div>
+      </motion.main>
     </main>
   );
 }
