@@ -1,5 +1,5 @@
 import { fetchCurrentWeather, fetchForecast } from "../api";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import HourCard from "./HourCard";
 import Pagination from "react-bootstrap/Pagination";
@@ -11,34 +11,37 @@ function Forecast() {
     temp_f: "",
     condition: { text: "", icon: "" },
   });
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(null);
   const [search, setSearch] = useState("");
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(3);
 
   useEffect(() => {
-    fetchCurrentWeather(city)
-      .then((weatherFromApi) => {
-        setCurrentWeather(weatherFromApi);
-      })
-      .catch((error) => {
-        console.log(error);
-        setCity("Location Not Found...");
-      });
-    fetchForecast(city)
-      .then((forecastFromApi) => {
-        setHourlyForecast(forecastFromApi);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (city) {
+      fetchCurrentWeather(city)
+        .then((weatherFromApi) => {
+          setCurrentWeather(weatherFromApi);
+        })
+        .catch((error) => {
+          console.log(error);
+          setCity("Location Not Found...");
+        });
+
+      fetchForecast(city)
+        .then((forecastFromApi) => {
+          setHourlyForecast(forecastFromApi);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }, [city]);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setCity(search);
-    frm.reset();
+    setSearch("");
   };
 
   const handlePagination = (pageNumber) => {
@@ -51,7 +54,7 @@ function Forecast() {
     setCurrentPage(pageNumber);
   };
 
-  if (city === "" || city === "Location Not Found...") {
+  if (city === null || city === "Location Not Found...") {
     return (
       <main>
         <motion.div
@@ -65,13 +68,14 @@ function Forecast() {
               type="text"
               id="search"
               placeholder="search by city..."
+              value={search}
               onChange={(event) => {
                 setSearch(event.target.value);
               }}
             />
             <button>Search</button>
           </form>
-          <h2>{city}</h2>
+          <h3>{city}</h3>
           <i className="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
         </motion.div>
       </main>
