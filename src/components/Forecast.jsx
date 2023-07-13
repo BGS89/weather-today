@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HourCard from "./HourCard";
 import Pagination from "react-bootstrap/Pagination";
+import Heading from "./Heading";
 
 function Forecast() {
   const [currentWeather, setCurrentWeather] = useState({
@@ -58,6 +59,7 @@ function Forecast() {
           animate={{ opacity: 1, transition: { delay: 0.5, duration: 1 } }}
           exit={{ opacity: 0, transition: { duration: 0.5 } }}
         >
+          <Heading />
           <form onSubmit={handleSearch}>
             <input
               type="text"
@@ -69,7 +71,7 @@ function Forecast() {
             />
             <button>Search</button>
           </form>
-          {/* <h2>{city}</h2> */}
+          <h2>{city}</h2>
           <i className="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
         </motion.div>
       </main>
@@ -99,6 +101,7 @@ function Forecast() {
         exit="exit"
         variants={forecastVariants}
       >
+        <Heading />
         <form onSubmit={handleSearch}>
           <input
             type="text"

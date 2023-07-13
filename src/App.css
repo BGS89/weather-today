@@ -36,6 +36,7 @@ form {
 }
 
 input {
+  all: unset;
   border: none;
   outline: none;
   background-color: #48cae4;
