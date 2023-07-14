@@ -3,7 +3,7 @@ import axios from "axios";
 const key = import.meta.env.VITE_SOME_KEY;
 
 const weatherApi = axios.create({
-  baseURL: "http://api.weatherapi.com/v1",
+  baseURL: "https://api.weatherapi.com/v1",
 });
 
 const fetchCurrentWeather = (city) => {
