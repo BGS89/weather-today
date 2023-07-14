@@ -1,5 +1,5 @@
 import { fetchCurrentWeather, fetchForecast } from "../api";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import HourCard from "./HourCard";
 import Pagination from "react-bootstrap/Pagination";
