@@ -1,6 +1,5 @@
 import "./App.css";
 import Forecast from "./components/Forecast";
-import Heading from "./components/Heading";
 
 function App() {
   return (
