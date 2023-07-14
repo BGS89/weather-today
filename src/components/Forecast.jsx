@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import HourCard from "./HourCard";
 import Pagination from "react-bootstrap/Pagination";
 import Heading from "./Heading";
+import SearchForm from "./SearchForm";
 
 function Forecast() {
   const [currentWeather, setCurrentWeather] = useState({
@@ -63,19 +64,11 @@ function Forecast() {
           exit={{ opacity: 0, transition: { duration: 0.5 } }}
         >
           <Heading />
-          <form onSubmit={handleSearch}>
-            <input
-              type="text"
-              id="search"
-              autoComplete="off"
-              placeholder="search by city..."
-              value={search}
-              onChange={(event) => {
-                setSearch(event.target.value);
-              }}
-            />
-            <button>Search</button>
-          </form>
+          <SearchForm
+            handleSearch={handleSearch}
+            search={search}
+            setSearch={setSearch}
+          />
           <h3>{city}</h3>
           <i className="fa-sharp fa-regular fa-sun fa-spin fa-8x"></i>
         </motion.div>
@@ -107,19 +100,11 @@ function Forecast() {
         variants={forecastVariants}
       >
         <Heading />
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            id="search"
-            autoComplete="off"
-            placeholder="search by city..."
-            onChange={(event) => {
-              setSearch(event.target.value);
-            }}
-          />
-          <button>Search</button>
-        </form>
-
+        <SearchForm
+          handleSearch={handleSearch}
+          search={search}
+          setSearch={setSearch}
+        />
         <h2>{city}</h2>
         <div id="description">
           <img src={currentWeather.condition.icon} alt="" />
