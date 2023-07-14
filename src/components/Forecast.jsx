@@ -67,6 +67,7 @@ function Forecast() {
             <input
               type="text"
               id="search"
+              autoComplete="off"
               placeholder="search by city..."
               value={search}
               onChange={(event) => {
@@ -110,6 +111,7 @@ function Forecast() {
           <input
             type="text"
             id="search"
+            autoComplete="off"
             placeholder="search by city..."
             onChange={(event) => {
               setSearch(event.target.value);
